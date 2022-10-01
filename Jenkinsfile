@@ -19,6 +19,13 @@ pipeline {
                 war: 'target\\tasks-backend.war'
             }
         }
+        stage ('API Tests') {
+            steps {
+                git branch: 'main', 
+                url: 'git@github.com:NandoHessel/Testes-de-API---RestAssured.git'
+                bat 'mvn test'
+            }
+        }
     }
 }
 
