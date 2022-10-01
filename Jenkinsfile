@@ -44,6 +44,16 @@ pipeline {
                 }
             }
         }
+        stage ('Testes Funcionais') {
+            steps {
+                dir ("Funcional_testings") {
+                    git branch: 'main', 
+                    url: 'git@github.com:NandoHessel/TestesFuncionais-Selenium.git'
+
+                    bat 'mvn test'
+                } 
+            }
+        }
     }
 }
 
