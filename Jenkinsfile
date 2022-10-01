@@ -21,9 +21,27 @@ pipeline {
         }
         stage ('API Tests') {
             steps {
-                git branch: 'main', 
-                url: 'git@github.com:NandoHessel/Testes-de-API---RestAssured.git'
-                bat 'mvn test'
+                dir ("APi_Tests") {
+                    git branch: 'main', 
+                    url: 'git@github.com:NandoHessel/Testes-de-API---RestAssured.git'
+                    
+                    bat 'mvn test'
+                } 
+            }
+        }
+        stage ('Deploy Frontend') {
+            steps {
+                dir ('Frontend') {
+                    git branch: 'main', 
+                    url: 'git@github.com:NandoHessel/tasks-frontend.git'
+
+                    bat 'mvn clean package'
+
+                    deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', 
+                    path: '', url: 'http://localhost:8001')], 
+                    contextPath: 'tasks', 
+                    war: 'target\\tasks.war'
+                }
             }
         }
     }
