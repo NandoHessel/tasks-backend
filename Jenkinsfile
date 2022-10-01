@@ -24,7 +24,7 @@ pipeline {
                 dir ("APi_Tests") {
                     git branch: 'main', 
                     url: 'git@github.com:NandoHessel/Testes-de-API---RestAssured.git'
-                    
+
                     bat 'mvn test'
                 } 
             }
@@ -32,7 +32,7 @@ pipeline {
         stage ('Deploy Frontend') {
             steps {
                 dir ('Frontend') {
-                    git branch: 'main', 
+                    git branch: 'master', 
                     url: 'git@github.com:NandoHessel/tasks-frontend.git'
 
                     bat 'mvn clean package'
