@@ -60,6 +60,16 @@ pipeline {
                 bat 'docker-compose up -d'
             }
         }
+        stage ('HealthCheck') {
+            steps {
+                dir ("Health_Check") {
+                    git branch: 'main', 
+                    url: 'git@github.com:NandoHessel/HealthCheckTest.git'
+
+                    bat 'mvn test'
+                } 
+            }
+        }
     }
 }
 
