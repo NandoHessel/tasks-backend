@@ -73,10 +73,7 @@ pipeline {
     }
     post {
         always {
-            junit keepLongStdio: true, testResults: 'target/surefire-reports.*xml, 
-            APi_Tests/target/surefire-reports.*xml, 
-            Funcional_testings/target/surefire-reports/.*xml, 
-            Health_Check/target/.*xml'
+            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml, APi_Tests/target/surefire-reports/*.xml, Funcional_testings/target/surefire-reports/*.xml, Health_Check/target/*.xml'
         }
     }
 }
